@@ -24,7 +24,7 @@ Or install it yourself as:
 To use Exonio you just have to call the method you like to use. Example:
 
 ```ruby
- Exonio.pmt(0.075 / 12, 12 * 15, 200_000) # ==> -1854.02
+ Exonio.pmt(0.075 / 12, 12 * 15, 200_000) # ==> -1854.0247200054619
 ```
 
 ## Available Formulas
@@ -36,7 +36,7 @@ an additional monthly savings of $100 with the interest rate at
 5% (annually) compounded monthly?
 
 ```ruby
-Exonio.fv(0.05 / 12, 10 * 12, -100, -100) # ==> 15692.93
+Exonio.fv(0.05 / 12, 10 * 12, -100, -100) # ==> 15692.928894335748
 ```
 
 By convention, the negative sign represents cash flow out (i.e. money not
@@ -60,7 +60,7 @@ What is the monthly payment needed to pay off a $200,000 loan in 15
 years at an annual interest rate of 7.5%?
 
 ```ruby
-Exonio.nper(0.075 / 12, 12 * 15, 200_000) # ==> -1854.02
+Exonio.pmt(0.075 / 12, 12 * 15, 200_000) # ==> -1854.0247200054619
 ```
 
 In order to pay-off (i.e., have a future-value of 0) the $200,000 obtained

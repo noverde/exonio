@@ -10,13 +10,13 @@ describe Exonio::Financial do
     it 'computes fv with default arguments' do
       results = Exonio.fv(rate, nper, pmt, pv)
 
-      expect(results).to eq(15692.93)
+      expect(results).to eq(15692.928894335748)
     end
 
     it 'computes fv when payments are due at beginning' do
       results = Exonio.fv(rate, nper, pmt, pv, 1)
 
-      expect(results).to eq(15757.63)
+      expect(results).to eq(15757.629844104778)
     end
   end
 
@@ -60,25 +60,25 @@ describe Exonio::Financial do
     it 'computes pmt with default arguments' do
       results = Exonio.pmt(rate, nper, pv)
 
-      expect(results).to eq(-1854.02)
+      expect(results).to eq(-1854.0247200054619)
     end
 
     it 'computes pmt with fv argument' do
       results = Exonio.pmt(rate, nper, pv, fv)
 
-      expect(results).to eq(-1884.23)
+      expect(results).to eq(-1884.225956005735)
     end
 
     it 'computes pmt when payments are due at beginning' do
       results = Exonio.pmt(rate, nper, pv, 0, 1)
 
-      expect(results).to eq(-1842.51)
+      expect(results).to eq(-1842.5090385147448)
     end
 
     it 'computes pmt with fv and due at beginning' do
       results = Exonio.pmt(rate, nper, pv, fv, 1)
 
-      expect(results).to eq(-1872.52)
+      expect(results).to eq(-1872.522689198246)
     end
   end
 end
