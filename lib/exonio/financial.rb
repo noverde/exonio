@@ -13,14 +13,13 @@ module Exonio
     # @return [Float]
     #
     # @example
-    #   Exonio.fv(0.05 / 12, 12 * 10, -100, -100) # ==> 15692.93
+    #   Exonio.fv(0.05 / 12, 12 * 10, -100, -100) # ==> 15692.928894335748
     #
     def fv(rate, nper, pmt, pv, end_or_beginning = 0)
       temp = (1 + rate) ** nper
       fact = (1 + rate* end_or_beginning) * (temp - 1) / rate
-      result = -(pv * temp + pmt * fact)
 
-      result.round(2)
+      -(pv * temp + pmt * fact)
     end
 
 
@@ -59,14 +58,13 @@ module Exonio
     # @return [Float]
     #
     # @example
-    #   Exonio.pmt(0.075/12, 12*15, 200_000) # ==> -1854.02
+    #   Exonio.pmt(0.075/12, 12*15, 200_000) # ==> -1854.0247200054619
     #
     def pmt(rate, nper, pv, fv = 0, end_or_beginning = 0)
       temp = (1 + rate) ** nper
       fact = (1 + rate * end_or_beginning) * (temp - 1) / rate
-      result = -(fv + pv * temp) / fact
 
-      result.round(2)
+      -(fv + pv * temp) / fact
     end
   end
 end
