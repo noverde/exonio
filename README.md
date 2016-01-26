@@ -43,6 +43,17 @@ By convention, the negative sign represents cash flow out (i.e. money not
 available today).  Thus, saving $100 a month at 5% annual interest leads
 to $15,692.93 available to spend in 10 years.
 
+### IPMT
+
+What is the interest part of a payment in the 8th period (i.e., 8th month),
+having a $5,000 loan to be paid in 2 years at an annual interest rate of 7.5%?
+
+```ruby
+Exonio.ipmt(0.075 / 12, 8, 12 * 2, 5_000.00) # ==> -22.612926783996798
+```
+
+So, in the 8th payment, $22.61 are the interest part.
+
 ### NPER
 
 If you only had $150/month to pay towards the loan, how long would it take
@@ -91,7 +102,6 @@ There's a lot of formulas to be implemented, including:
 * AMORLINC
 * DB
 * DDB
-* IPMT
 * IRR
 * MIRR
 * NPV
