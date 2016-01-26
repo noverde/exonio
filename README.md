@@ -70,7 +70,7 @@ example illustrates usage of `fv` (future value) having a default value of 0.
 ### PV
 
 What is the present value (e.g., the initial investment) of an investment
-that needs to total $15692.93 after 10 years of saving $100 every month?
+that needs to total $20,000.00 after 10 years of saving $100 every month?
 Assume the interest rate is 5% (annually) compounded monthly.
 
 ```ruby
