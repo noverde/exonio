@@ -1,8 +1,12 @@
 # CHANGELOG
 
+## 0.3.0
+
+* Implements `ipmt` method
+
 ## 0.2.0
 
-* Implements pv method
+* Implements `pv` method
 
 ## 0.1.1
 
