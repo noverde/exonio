@@ -66,5 +66,27 @@ module Exonio
 
       -(fv + pv * temp) / fact
     end
+
+    # Calculates the present value of an annuity investment based on
+    # constant-amount periodic payments and a constant interest rate.
+    #
+    # @param rate [Float] The interest rate as decimal (not per cent) per period
+    # @param nper [Integer] The number of payments to be made (number of periods)
+    # @param pmt [Float] The amount per period to be paid
+    # @param fv [Float] The future value remaining after the final payment has been made
+    # @param end_or_begining [Integer] Whether payments are due at the end (0) or
+    #   beggining (1) of each period
+    #
+    # @return [Float]
+    #
+    # @example
+    #   Exonio.pv(0.05/12, 12*10, -100, 20_000) # ==> -2715.0857731569663
+    #
+    def pv(rate, nper, pmt, fv = 0, end_or_beginning = 0)
+      temp = (1 + rate) ** nper
+      fact = (1 + rate * end_or_beginning) * (temp - 1) / rate
+
+      -(fv + pmt * fact) / temp
+    end
   end
 end
