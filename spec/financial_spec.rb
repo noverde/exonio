@@ -20,6 +20,37 @@ describe Exonio::Financial do
     end
   end
 
+  describe '#ipmt' do
+    let(:rate) { 0.075 / 12 }
+    let(:nper) { 12 * 2 }
+    let(:per) { 8 }
+    let(:pv) { 5000.00 }
+
+    it 'computes ipmt with default arguments' do
+      results = Exonio.ipmt(rate, per, nper, pv)
+
+      expect(results).to eq(-22.612926783996798)
+    end
+
+    it 'computes ipmt with fv argument' do
+      results = Exonio.ipmt(rate, per, nper, pv, 1000)
+
+      expect(results).to eq(-20.88551214079616)
+    end
+
+    it 'computes ipmt when payments are due at beginning' do
+      results = Exonio.ipmt(rate, per, nper, pv, 0, 1)
+
+      expect(results).to eq(-22.47247382260551)
+    end
+
+    it 'returns zero when per and end_or_beginning are 1' do
+      results = Exonio.ipmt(rate, 1, nper, pv, 0, 1)
+
+      expect(results).to be_zero
+    end
+  end
+
   describe '#nper' do
     let(:rate) { 0.07 / 12 }
     let(:pmt) { -150.00 }
