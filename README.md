@@ -67,6 +67,20 @@ In order to pay-off (i.e., have a future-value of 0) the $200,000 obtained
 today, a monthly payment of $1,854.02 would be required.  Note that this
 example illustrates usage of `fv` (future value) having a default value of 0.
 
+### PV
+
+What is the present value (e.g., the initial investment) of an investment
+that needs to total $15692.93 after 10 years of saving $100 every month?
+Assume the interest rate is 5% (annually) compounded monthly.
+
+```ruby
+Exonio.pv(0.05 / 12, 12 * 10, -100, 20_000) # ==> -2715.0857731569663
+```
+
+By convention, the negative sign represents cash flow out (i.e., money not available today).
+Thus, to end up with $20,000.00 in 10 years saving $100 a month at 5% annual
+interest, an initial deposit of $2715,09 should be made.
+
 ## TODO
 
 There's a lot of formulas to be implemented, including:
@@ -82,7 +96,6 @@ There's a lot of formulas to be implemented, including:
 * MIRR
 * NPV
 * PPMT
-* PV
 * RATE
 * SLN
 * SYD

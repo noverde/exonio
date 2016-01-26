@@ -81,4 +81,35 @@ describe Exonio::Financial do
       expect(results).to eq(-1872.522689198246)
     end
   end
+
+  describe '#pv' do
+    let(:rate) { 0.05 / 12 }
+    let(:nper) { 12 * 10 }
+    let(:pmt) { -100.00 }
+    let(:fv) { 20_000.00 }
+
+    it 'computes pv with default arguments' do
+      results = Exonio.pv(rate, nper, pmt)
+
+      expect(results).to eq(9428.135032823473)
+    end
+
+    it 'computes pv with fv argument' do
+      results = Exonio.pv(rate, nper, pmt, fv)
+
+      expect(results).to eq(-2715.0857731569663)
+    end
+
+    it 'computes pv when payments are due at beginning' do
+      results = Exonio.pv(rate, nper, pmt, 0, 1)
+
+      expect(results).to eq(9467.418928793571)
+    end
+
+    it 'computes pv with fv and due at beginning' do
+      results = Exonio.pv(rate, nper, pmt, fv, 1)
+
+      expect(results).to eq(-2675.801877186867)
+    end
+  end
 end
