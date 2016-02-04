@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.4.0
+
+* Implements `rate` method
+
 ## 0.3.0
 
 * Implements `ipmt` method
