@@ -143,4 +143,28 @@ describe Exonio::Financial do
       expect(results).to eq(-2675.801877186867)
     end
   end
+
+  describe '#rate' do
+    let(:nper) { 12 }
+    let(:pmt) { 363.78 }
+    let(:pv) { -3056.00 }
+
+    it 'computes rate with default arguments' do
+      results = Exonio.rate(nper, pmt, pv)
+
+      expect(results).to eq(0.05963422268883278)
+    end
+
+    it 'computes rate with fv argument' do
+      results = Exonio.rate(nper, pmt, pv, 10000, 1)
+
+      expect(results).to eq(0.20020470756876815)
+    end
+
+    it 'computes rate when payments are due at beginning' do
+      results = Exonio.rate(nper, pmt, pv, 0, 1)
+
+      expect(results).to eq(0.07265012823626603)
+    end
+  end
 end

@@ -92,6 +92,17 @@ By convention, the negative sign represents cash flow out (i.e., money not avail
 Thus, to end up with $20,000.00 in 10 years saving $100 a month at 5% annual
 interest, an initial deposit of $2715,09 should be made.
 
+### RATE
+
+Suppose you take a loan of $50,000.00 to pay in 3 years with a monthly payment of $2,500.00.
+What is the rate applied to this loan?
+
+```ruby
+Exonio.rate(12 * 3, 2_500, -50_000) # ==> 0.036006853458478955
+```
+
+So, the rate applied is 3.60%.
+
 ## TODO
 
 There's a lot of formulas to be implemented, including:
@@ -106,7 +117,6 @@ There's a lot of formulas to be implemented, including:
 * MIRR
 * NPV
 * PPMT
-* RATE
 * SLN
 * SYD
 * VDB
