@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'bigdecimal'
 
 describe Exonio::Financial do
   describe '#fv' do
@@ -165,6 +166,17 @@ describe Exonio::Financial do
       results = Exonio.rate(nper, pmt, pv, 0, 1)
 
       expect(results).to eq(0.07265012823626603)
+    end
+
+    context 'with large decimal scale' do
+      let(:pmt) { BigDecimal.new("351.622169863986539264256777349669281495") }
+      let(:pv) { BigDecimal.new("-3061.762000011") }
+
+      it 'computes rate' do
+        results = Exonio.rate(nper, pmt, pv) * 100
+
+        expect(results.round(2)).to eq(5.32)
+      end
     end
   end
 end
