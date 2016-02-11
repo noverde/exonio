@@ -135,7 +135,7 @@ module Exonio
 
       begin
         temp = newton_iter(guess, nper, pmt, pv, fv, end_or_beginning)
-        next_guess = guess - temp
+        next_guess = (guess - temp).round(20)
         diff = (next_guess - guess).abs
         close = diff < tolerancy
         guess = next_guess
