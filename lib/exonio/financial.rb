@@ -169,7 +169,7 @@ module Exonio
     # series of periodic cash flows.
     #
     # @param cashflows [Array] An array containing the income or payments
-    # associated with the investiment
+    # associated with the investment
     #
     # @return [Float]
     #
