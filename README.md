@@ -134,9 +134,7 @@ There's a lot of formulas to be implemented, including:
 * AMORLINC
 * DB
 * DDB
-* IRR
 * MIRR
-* NPV
 * PPMT
 * SLN
 * SYD
