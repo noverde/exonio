@@ -144,6 +144,45 @@ module Exonio
       next_guess
     end
 
+    # Calculates the net present value of an investment based on a
+    # series of periodic cash flows and a discount rate.
+    #
+    # @param discount [Float] The discount rate of the investment over one period
+    # @param cashflows [Array] The first future cash flow + additional future cash flows
+    #
+    # @return [Float]
+    #
+    # @example
+    #   Exonio.npv(0.281, [-100, 39, 59, 55, 20]) # ==> -0.00661872883563408
+    #
+    def npv(discount, cashflows)
+      total = 0
+
+      cashflows.each_with_index do |cashflow, index|
+        total += cashflow / (1 + discount) ** (index + 1)
+      end
+
+      total
+    end
+
+    # Calculates the internal rate of return on an investment based on a
+    # series of periodic cash flows.
+    #
+    # @param cashflows [Array] An array containing the income or payments
+    # associated with the investiment
+    #
+    # @return [Float]
+    #
+    # @example
+    #   Exonio.irr([-100, 39, 59, 55, 20]) # ==> 0.28094842116...
+    #
+    def irr(values)
+      func = Helpers::IrrHelper.new(values)
+      guess = [ func.zero ]
+      nlsolve( func, guess)
+      guess[0]
+    end
+
     private
 
     # This method was borrowed from the NumPy rate formula

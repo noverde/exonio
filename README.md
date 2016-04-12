@@ -43,6 +43,19 @@ By convention, the negative sign represents cash flow out (i.e. money not
 available today).  Thus, saving $100 a month at 5% annual interest leads
 to $15,692.93 available to spend in 10 years.
 
+### IRR
+
+Suppose one invests 100 units and then makes the following withdrawals at regular (fixed)
+intervals: 39, 59, 55, 20. Assuming the ending value is 0, one's 100 unit investment
+yields 173 units; however, due to the combination of compounding and the periodic
+withdrawals, the "average" rate of return is neither simply 0.73/4 nor (1.73)^0.25-1.
+
+```ruby
+Exonio.irr([-100, 39, 59, 55, 20]) # ==> 0.28095
+```
+
+So, the internal rate of return is 28.09%
+
 ### IPMT
 
 What is the interest part of a payment in the 8th period (i.e., 8th month),
@@ -64,6 +77,14 @@ Exonio.nper(0.07 / 12, -150, 8000) # ==> 64.07334877066185
 ```
 
 So, over 64 months would be required to pay off the loan.
+
+### NPV
+
+Calculates the Net Present Value of an investment
+
+```ruby
+Exonio.npv(0.281, [-100, 39, 59, 55, 29]) # ==> -0.00661872883563408
+```
 
 ### PMT
 
