@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 0.5.0
+
+* Implements `irr` and `npv` method
+
+## 0.4.1
+
+* Fix infinite loop with big scale on `rate` method
+
 ## 0.4.0
 
 * Implements `rate` method
