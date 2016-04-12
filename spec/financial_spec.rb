@@ -179,4 +179,20 @@ describe Exonio::Financial do
       end
     end
   end
+
+  describe '#npv' do
+    it 'computes the net present value' do
+      results = Exonio.npv(0.281, [-100.0, 39, 59, 55, 20])
+
+      expect(results).to eq(-0.00661872883563408)
+    end
+  end
+
+  describe '#irr' do
+    it 'computes the internal rate of return' do
+      results = Exonio.irr([-100, 39, 59, 55, 20])
+
+      expect(results.round(5)).to eq(0.28095)
+    end
+  end
 end
