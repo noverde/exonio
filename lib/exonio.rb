@@ -5,8 +5,7 @@ require 'exonio/version'
 require 'exonio/financial'
 require 'exonio/helpers'
 
-include Newton
-
 module Exonio
+  extend Newton
   extend Financial
 end
