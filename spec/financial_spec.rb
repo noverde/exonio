@@ -186,6 +186,12 @@ describe Exonio::Financial do
 
       expect(results).to eq(-0.00661872883563408)
     end
+
+    context 'with large cashflows' do
+      it 'does not raises infinite error' do
+        expect { Exonio.npv(6.387405495738, CashflowFixture.cashflows) }.not_to raise_error
+      end
+    end
   end
 
   describe '#irr' do
