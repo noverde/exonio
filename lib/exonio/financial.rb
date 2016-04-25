@@ -159,7 +159,7 @@ module Exonio
       total = 0
 
       cashflows.each_with_index do |cashflow, index|
-        total += cashflow / (1 + discount) ** (index + 1)
+        total += (cashflow.to_f / (1 + discount.to_f) ** (index + 1))
       end
 
       total
