@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.5.1
+
+* Fix the FloatDomainError exception
+
 ## 0.5.0
 
 * Implements `irr` and `npv` method
