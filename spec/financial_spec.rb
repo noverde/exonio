@@ -182,9 +182,9 @@ describe Exonio::Financial do
 
   describe '#npv' do
     it 'computes the net present value' do
-      results = Exonio.npv(0.281, [-100.0, 39, 59, 55, 20])
+      results = Exonio.npv(0.281, CashflowFixture.cashflows)
 
-      expect(results).to eq(-0.00661872883563408)
+      expect(results).to eq(-7787.382638079077)
     end
 
     context 'with large cashflows' do
@@ -196,9 +196,9 @@ describe Exonio::Financial do
 
   describe '#irr' do
     it 'computes the internal rate of return' do
-      results = Exonio.irr([-100, 39, 59, 55, 20])
+      results = Exonio.irr(CashflowFixture.cashflows)
 
-      expect(results.round(5)).to eq(0.28095)
+      expect(results.round(5)).to eq(0.00146)
     end
   end
 end
