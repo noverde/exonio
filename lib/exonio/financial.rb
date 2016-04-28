@@ -178,7 +178,7 @@ module Exonio
     #
     def irr(values)
       func = Helpers::IrrHelper.new(values)
-      guess = [ func.zero ]
+      guess = [ func.eps ]
       nlsolve( func, guess)
       guess[0]
     end
