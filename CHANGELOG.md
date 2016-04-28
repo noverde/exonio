@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.5.2
+
+* Fix the IRR method
+
 ## 0.5.1
 
 * Fix the FloatDomainError exception
