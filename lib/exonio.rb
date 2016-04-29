@@ -3,7 +3,7 @@ require 'bigdecimal/newton'
 
 require 'exonio/version'
 require 'exonio/financial'
-require 'exonio/helpers'
+require 'exonio/helpers/irr_helper'
 
 module Exonio
   extend Newton
