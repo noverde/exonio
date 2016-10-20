@@ -127,6 +127,20 @@ Exonio.rate(12 * 3, 2_500, -50_000) # ==> 0.036006853458478955
 
 So, the rate applied is 3.60%.
 
+## Statistical formulas
+
+### Sum
+```ruby
+Exonio.sum([1, 2, 3, 4, 5]) # ==> 15
+```
+### Mean
+```ruby
+Exonio.mean([1, 2, 3, 4, 5]) # ==> 3.0
+```
+### Median
+```ruby
+Exonio.median([1, 2, 3, 6, 5, 4]) # ==> 3.5
+```
 ## TODO
 
 There's a lot of formulas to be implemented, including:
@@ -160,4 +174,5 @@ Exonio is released under the MIT License.
 
 A special thanks goes to the python [NumPy project](http://www.numpy.org/), which was the source for most
 of the formulas.
+
 
