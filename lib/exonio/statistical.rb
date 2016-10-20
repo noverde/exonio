@@ -22,7 +22,7 @@ module Exonio
     # @example
     #   Exonio.mean([1,2,3,4,5]) # => 3.0
     def mean(numbers_ary)
-      numbers_ary.inject{ |sum, el| sum + el }.to_f / numbers_ary.size
+      numbers_ary.inject(0) { |sum, i| sum + i }.to_f / numbers_ary.size
     end
 
     # Median formula
