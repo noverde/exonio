@@ -21,7 +21,7 @@ module Exonio
 
       def values(x)
         value = Exonio.npv(x[0].to_f, @transactions)
-        [ value ]
+        [ BigDecimal.new(value.to_s) ]
       end
     end
   end
