@@ -1,5 +1,6 @@
 require 'bigdecimal'
 require 'bigdecimal/newton'
+require "bigdecimal/util"
 
 require 'exonio/version'
 require 'exonio/financial'
