@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.5.3
+
+* Fix error on IRR function
+
 ## 0.5.2
 
 * Fix the IRR method
