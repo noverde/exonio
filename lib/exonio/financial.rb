@@ -63,7 +63,14 @@ module Exonio
     #
     def nper(rate, pmt, pv, fv = 0, end_or_beginning = 0)
       z = pmt * (1 + rate * end_or_beginning) / rate
-      temp = Math.log((-fv + z) / (pv + z))
+
+      y = (-fv + z) / (pv + z)
+
+      if y.negative?
+        raise ArgumentError, "The Payment amount should be greater than or equal the interest amount"
+      end
+
+      temp = Math.log(y)
 
       temp / Math.log(1 + rate)
     end
