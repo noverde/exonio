@@ -50,14 +50,14 @@ module Exonio
     # constant-amount periodic payments and a constant interest rate.
     #
     # @param rate [Float] The interest rate as decimal (not per cent) per period
-    # @param pmt [Float] The number of payments to be made
-    # @param pv [Float] The present value
+    # @param pmt [Float] The payment amount made each period
+    # @param pv [Float] The present value of the payments
     # @param fv [Float] The future value remaining after the final payment has been made
     # @param end_or_begining [Integer] Whether payments are due at the end (0) or
     #   beggining (1) of each period
     #
     # @return [Float]
-    #
+    # 
     # @example
     #   Exonio.nper(0.07 / 12, -150, 8000) # ==> 64.07334877066185
     #
