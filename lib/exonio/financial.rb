@@ -66,7 +66,7 @@ module Exonio
 
       y = (-fv + z) / (pv + z)
 
-      if y.negative?
+      if y < 0
         raise ArgumentError, "The Payment amount should be greater than or equal the interest amount"
       end
 

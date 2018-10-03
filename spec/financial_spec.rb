@@ -82,7 +82,7 @@ describe Exonio::Financial do
       expect(results).to eq(70.14566694692749)
     end
 
-    it 'raise an exception when the payment amount is lower than the interest amount' do
+    it 'raises an exception when the payment amount is lower than the interest amount' do
       expect { Exonio.nper(rate, -10, pv, fv, 1) }.to raise_error(ArgumentError)
     end
   end
