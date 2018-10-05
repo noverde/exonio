@@ -62,15 +62,15 @@ module Exonio
     #   Exonio.nper(0.07 / 12, -150, 8000) # ==> 64.07334877066185
     #
     def nper(rate, pmt, pv, fv = 0, end_or_beginning = 0)
-      z = pmt * (1 + rate * end_or_beginning) / rate
+      interest_amount = (-pv * rate) * 12
 
-      y = (-fv + z) / (pv + z)
-
-      if y < 0
-        raise ArgumentError, "The Payment amount should be greater than or equal the interest amount"
+      if pmt < interest_amount
+        raise ArgumentError, "The payment amount ($ #{pmt}) is too low. It should be at least $ #{interest_amount} (interest amount)"
       end
 
-      temp = Math.log(y)
+      z = pmt * (1 + rate * end_or_beginning) / rate
+
+      temp = Math.log((-fv + z) / (pv + z))
 
       temp / Math.log(1 + rate)
     end
