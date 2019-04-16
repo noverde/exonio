@@ -11,7 +11,7 @@ module Exonio
 
       values.each do |key, value|
         define_method key do
-          BigDecimal.new(value)
+          BigDecimal(value)
         end
       end
 
