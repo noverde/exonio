@@ -81,6 +81,20 @@ describe Exonio::Financial do
 
       expect(results).to eq(70.14566694692749)
     end
+
+    it 'computes nper when the interest rate is 0' do
+      # number of $100 payments to pay off a $1000 loan in full
+      results = Exonio.nper(0.0, -100.0, 1000.0)
+
+      expect(results).to eq(10)
+    end
+
+    it 'computes nper when the interest rate is 0 with fv' do
+      # number of $100 payments to reduce a $1000 loan to $200
+      results = Exonio.nper(0.0, -100.00, 1000.0, -200.0)
+
+      expect(results).to eq(8)
+    end
   end
 
   describe '#pmt' do
