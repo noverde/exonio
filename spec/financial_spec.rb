@@ -169,8 +169,8 @@ describe Exonio::Financial do
     end
 
     context 'with large decimal scale' do
-      let(:pmt) { BigDecimal.new("351.622169863986539264256777349669281495") }
-      let(:pv) { BigDecimal.new("-3061.762000011") }
+      let(:pmt) { BigDecimal("351.622169863986539264256777349669281495") }
+      let(:pv) { BigDecimal("-3061.762000011") }
 
       it 'computes rate' do
         results = Exonio.rate(nper, pmt, pv) * 100
