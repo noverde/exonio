@@ -57,11 +57,13 @@ module Exonio
     #   beggining (1) of each period
     #
     # @return [Float]
-    # 
+    #
     # @example
     #   Exonio.nper(0.07 / 12, -150, 8000) # ==> 64.07334877066185
     #
     def nper(rate, pmt, pv, fv = 0, end_or_beginning = 0)
+      return (-pv - fv) / pmt if rate.zero?
+
       z = pmt * (1 + rate * end_or_beginning) / rate
       temp = Math.log((-fv + z) / (pv + z))
 
