@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 0.5.4
+
+* Fix zero interest rate (#18)
+* Remove BigDecimal.new deprecation warning (#17)
+
 ## 0.5.3
 
 * Fix error on IRR function
