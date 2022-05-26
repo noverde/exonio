@@ -2,6 +2,17 @@ require 'spec_helper'
 require 'bigdecimal'
 
 describe Exonio::Financial do
+  describe '#effect' do
+    let(:rate) { 0.05 }
+    let(:nper) { 12 * 10 }
+
+    it 'computes effect with default arguments' do
+      results = Exonio.effect(rate, nper)
+
+      expect(results).to eq(0.05126014873337037)
+    end
+  end
+
   describe '#fv' do
     let(:rate) { 0.05 / 12 }
     let(:nper) { 12 * 10 }

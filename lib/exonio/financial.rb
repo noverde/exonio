@@ -1,5 +1,22 @@
 module Exonio
   module Financial
+    # Calculates the effective annual interest rate, given a nominal interest rate and the number of
+    # compounding periods. Nominal interest rate is the stated rate on the financial product.
+    # Effective annual interest rate is the interest rate actually earned due to compounding.
+    # constant-amount periodic payments and a constant interest rate.
+    #
+    # @param rate [Float] The nominal interest rate as decimal (not per cent) per period
+    # @param nper [Integer] The number of compounding periods
+    #
+    # @return [Float]
+    #
+    # @example
+    #   Exonio.effect(0.05, 12 * 10) # ==> 0.05126014873337037
+    #
+    def effect(rate, nper)
+      (1 + rate / nper) ** nper - 1
+    end
+
     # Calculates the future value of an annuity investment based on
     # constant-amount periodic payments and a constant interest rate.
     #
