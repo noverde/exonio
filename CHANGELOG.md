@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.6.0
+
+* Implements `effect` method (#21)
+
 ## 0.5.4
 
 * Fix zero interest rate (#18)
