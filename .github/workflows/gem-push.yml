@@ -1,0 +1,26 @@
+name: RubyGem
+
+on:
+  push:
+    tags:
+      - v*
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.1"
+
+      - name: Install dependencies
+        run: bundle install
+
+      - name: Publish to RubyGems
+        uses: noverde/github-actions/push-rubygems@main
+        with:
+          rubygems_api_key: ${{ secrets.RUBYGEMS_TOKEN }}
