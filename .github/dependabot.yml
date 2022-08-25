@@ -1,0 +1,18 @@
+version: 2
+
+updates:
+  - open-pull-requests-limit: 10
+    package-ecosystem: "bundler"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    reviewers:
+      - "noverde/developers"
+
+  - open-pull-requests-limit: 10
+    package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    reviewers:
+      - "noverde/developers"
