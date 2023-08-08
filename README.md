@@ -34,12 +34,21 @@ To use Exonio you just have to call the method you like to use. Example:
 
 ### EFFECT
 
-The Excel EFFECT function returns the effective annual interest rate, given a nominal interest rate and the number of compounding periods per year. 
+The Excel EFFECT function returns the effective annual interest rate, given a nominal interest rate and the number of compounding periods per year.
 Effective annual interest rate is the interest rate actually earned due to compounding.
 More about this function [EFFECT](https://exceljet.net/excel-functions/excel-effect-function)
 
 ```ruby
 Exonio.effect(0.05, 10 * 12) # ==> 0.05126014873337037
+```
+
+### NOMINAL
+
+The Excel NOMINAL function returns the nominal interest rate when given an effective annual interest rate and the number of compounding periods per year. The effective rate is the actual rate due to compounding. The nominal rate is typically the stated rate.
+More about this function [NOMINAL](https://exceljet.net/functions/nominal-function)
+
+```ruby
+Exonio.nominal(0.05, 12 / 6) # ==> 0.04939015319191986
 ```
 
 ### FV
