@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 0.7.0
+
+* Implements `nominal` method (#35)
+* Update dependencies (#32)
+
 ## 0.6.1
 
 * Update dependencies (#25)
