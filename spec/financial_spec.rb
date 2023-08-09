@@ -13,6 +13,17 @@ describe Exonio::Financial do
     end
   end
 
+  describe '#nominal' do
+    let(:rate) { 0.05 }
+    let(:npery) { 12 / 6 }
+
+    it 'computes nominal with default arguments' do
+      results = Exonio.nominal(rate, npery)
+
+      expect(results).to eq(0.04939015319191986)
+    end
+  end
+
   describe '#fv' do
     let(:rate) { 0.05 / 12 }
     let(:nper) { 12 * 10 }
