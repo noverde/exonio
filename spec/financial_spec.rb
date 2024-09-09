@@ -148,6 +148,18 @@ describe Exonio::Financial do
 
       expect(results).to eq(-1872.522689198246)
     end
+
+    it 'computes pmt when the interest rate is 0' do
+      results = Exonio.pmt(0.0, 36, 36_000.0)
+
+      expect(results).to eq(-1000.0)
+    end
+
+    it 'computes pmt when the interest rate is 0 with fv' do
+      results = Exonio.pmt(0.0, 24, 24_000.0, -12_000.0)
+
+      expect(results).to eq(-500.0)
+    end
   end
 
   describe '#pv' do
