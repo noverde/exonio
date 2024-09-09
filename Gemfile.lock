@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    exonio (0.7.0)
+    exonio (0.7.1)
 
 GEM
   remote: https://rubygems.org/
