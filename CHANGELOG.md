@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.7.1
+
+* Fixed `pmt` when rate is 0.
+
 ## 0.7.0
 
 * Implements `nominal` method (#35)
