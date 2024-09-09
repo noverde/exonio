@@ -119,6 +119,8 @@ module Exonio
     #   Exonio.pmt(0.075/12, 12*15, 200_000) # ==> -1854.0247200054619
     #
     def pmt(rate, nper, pv, fv = 0, end_or_beginning = 0)
+      return (-pv - fv) / nper if rate.zero?
+
       temp = (1 + rate) ** nper
       fact = (1 + rate * end_or_beginning) * (temp - 1) / rate
 
