@@ -226,6 +226,114 @@ describe Exonio::Financial do
         expect(results.round(2)).to eq(5.32)
       end
     end
+
+    context 'when the rate is solved exactly by zero' do
+      it 'returns zero when the cash flows cancel out' do
+        results = Exonio.rate(12, 100.0, -1200.0)
+
+        expect(results).to eq(0.0)
+      end
+
+      it 'returns zero when the cash flows cancel out against fv' do
+        results = Exonio.rate(12, 100.0, -700.0, -500.0)
+
+        expect(results).to eq(0.0)
+      end
+
+      it 'returns zero when payments are due at beginning' do
+        results = Exonio.rate(12, 100.0, -1200.0, 0, 1)
+
+        expect(results).to eq(0.0)
+      end
+    end
+
+    context 'when the equation does not involve the rate' do
+      it 'returns NaN when nper is zero and no rate solves the equation' do
+        results = Exonio.rate(0, pmt, pv)
+
+        expect(results).to be_nan
+      end
+
+      it 'returns NaN when nper is zero and every rate solves the equation' do
+        results = Exonio.rate(0, pmt, -50.0, 50.0)
+
+        expect(results).to be_nan
+      end
+
+      it 'returns NaN when every cash flow is zero' do
+        results = Exonio.rate(nper, 0.0, 0.0, 0.0)
+
+        expect(results).to be_nan
+      end
+    end
+
+    context 'when the iteration cannot be carried out' do
+      it 'returns NaN when the rate guess is zero' do
+        results = Exonio.rate(nper, pmt, pv, 0, 0, 0.0)
+
+        expect(results).to be_nan
+      end
+
+      it 'returns NaN when a step overflows to infinity' do
+        results = Exonio.rate(nper, pmt, pv, 0, 0, 1e300)
+
+        expect(results).to be_nan
+      end
+
+      it 'returns NaN when a step leaves the real numbers' do
+        results = Exonio.rate(12.5, pmt, pv, 0, 0, -3.0)
+
+        expect(results).to be_nan
+      end
+
+      it 'returns NaN when a step overflows for a negative nper' do
+        results = Exonio.rate(-12, pmt, pv)
+
+        expect(results).to be_nan
+      end
+
+      it 'returns NaN when an integer rate guess divides by zero' do
+        results = Exonio.rate(12, 363, -3056, 0, 0, 0)
+
+        expect(results).to be_nan
+      end
+
+      it 'returns NaN when a rational rate guess divides by zero' do
+        results = Exonio.rate(12, 363, -3056, 0, 0, Rational(0, 1))
+
+        expect(results).to be_nan
+      end
+    end
+
+    context 'when a numeric argument is not a finite real number' do
+      it 'returns NaN for an infinite argument' do
+        results = Exonio.rate(nper, pmt, Float::INFINITY)
+
+        expect(results).to be_nan
+      end
+
+      it 'returns NaN for a NaN argument' do
+        results = Exonio.rate(nper, pmt, pv, Float::NAN)
+
+        expect(results).to be_nan
+      end
+
+      it 'returns NaN for a complex argument' do
+        results = Exonio.rate(nper, Complex(1, 1), pv)
+
+        expect(results).to be_nan
+      end
+
+      it 'still raises for an argument that is not a number at all' do
+        expect { Exonio.rate(nper, 'not a number', pv) }.to raise_error(NoMethodError)
+      end
+    end
+
+    it 'still converges for a negative nper that admits a rate' do
+      results = Exonio.rate(-23, 387.03, 5563.81, 0, 0, 0.01)
+
+      expect(results).to eq(-0.04602860033291536)
+    end
   end
 
   describe '#npv' do

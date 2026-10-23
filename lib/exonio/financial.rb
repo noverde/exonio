@@ -152,6 +152,15 @@ module Exonio
     # Calculates the interest rate of an annuity investment based on
     # constant-amount periodic payments and the assumption of a constant interest rate.
     #
+    # Not every set of arguments solves. These cases return a Float rather than raising:
+    #
+    # * +Float::NAN+ when a numeric argument is not a finite real number.
+    # * +Float::NAN+ when +nper+ is zero or every cash flow is zero, since the equation
+    #   then does not involve the rate at all.
+    # * +0.0+ when +pv + pmt * nper + fv+ is zero, which is solved exactly by a zero rate.
+    # * +Float::NAN+ when a step leaves the real numbers or overflows.
+    # * +Float::NAN+ when an exact-arithmetic argument divides by zero mid-iteration.
+    #
     # @param nper [Integer] The number of payments to be made (number of periods)
     # @param pmt [Float] The amount per period to be paid
     # @param pv [Float] The present value
@@ -166,12 +175,25 @@ module Exonio
     #   Exonio.rate(12, 363.78, -3056.00) # ==> 0.05963422268883278
     #
     def rate(nper, pmt, pv, fv = 0, end_or_beginning = 0, rate_guess = 0.10)
+      inputs = [nper, pmt, pv, fv, end_or_beginning, rate_guess]
+
+      return Float::NAN if inputs.any? { |input| input.is_a?(Numeric) && !(input.real? && input.finite?) }
+
+      # With no periods, or with no cash flow at all, the equation does not involve the rate,
+      # so it is solved by either no rate or by every rate.
+      return Float::NAN if nper.zero? || (pmt.zero? && pv.zero? && fv.zero?)
+      return 0.0 if (pv + pmt * nper + fv).zero?
+
       guess = rate_guess
       tolerancy = 1e-6
       close = false
 
       begin
         temp = newton_iter(guess, nper, pmt, pv, fv, end_or_beginning)
+
+        # A negative (1 + rate) raised to a fractional nper is Complex, not real.
+        return Float::NAN unless temp.real? && temp.finite?
+
         next_guess = (guess - temp).round(20)
         diff = (next_guess - guess).abs
         close = diff < tolerancy
@@ -179,6 +201,10 @@ module Exonio
       end while !close
 
       next_guess
+    rescue ZeroDivisionError
+      # Integer and Rational arguments divide exactly, so a zero divisor raises here where
+      # Float and BigDecimal arguments would have produced a NaN.
+      Float::NAN
     end
 
     # Calculates the net present value of an investment based on a
